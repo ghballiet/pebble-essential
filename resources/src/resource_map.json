@@ -1,11 +1,6 @@
 {
 	"media": [
 		{
-			"defName": "FONT_PRAGMATA_26",
-			"type": "font",
-			"file": "fonts/Essential PragmataPro_0811.ttf"
-		},
-		{
 			"defName": "FONT_PRAGMATA_BOLD_64",
 			"type": "font",
 			"file": "fonts/Essential PragmataPro-B_0.81.ttf"
