@@ -10,6 +10,8 @@ PBL_APP_INFO(MY_UUID,
 			 DEFAULT_MENU_ICON,
 			 APP_INFO_WATCH_FACE);
 
+#define TIME_ZONE_OFFSET -7
+
 Window window;
 
 TextLayer text_time_layer;
@@ -42,14 +44,14 @@ void handle_init(AppContextRef ctx) {
 	text_layer_set_text_color(&text_time_layer, GColorWhite);
 	text_layer_set_background_color(&text_time_layer, GColorClear);
 	layer_set_frame(&text_time_layer.layer, GRect(4, 10, 144-4, 168-10));
-	text_layer_set_font(&text_time_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_UBUNTU_MONO_BOLD_54)));
+	text_layer_set_font(&text_time_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_UBUNTU_MONO_BOLD_53)));
 	layer_add_child(&window.layer, &text_time_layer.layer);
 
 	// date
 	text_layer_init(&text_date_layer, window.layer.frame);
 	text_layer_set_text_color(&text_date_layer, GColorWhite);
 	text_layer_set_background_color(&text_date_layer, GColorClear);
-	layer_set_frame(&text_date_layer.layer, GRect(17, 85, 144-17, 168-85));
+	layer_set_frame(&text_date_layer.layer, GRect(17, 75, 144-17, 168-75));
 	text_layer_set_font(&text_date_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_UBUNTU_MONO_24)));
 	layer_add_child(&window.layer, &text_date_layer.layer);
 
@@ -57,9 +59,24 @@ void handle_init(AppContextRef ctx) {
 	text_layer_init(&text_unix_layer, window.layer.frame);
 	text_layer_set_text_color(&text_unix_layer, GColorWhite);
 	text_layer_set_background_color(&text_unix_layer, GColorClear);
-	layer_set_frame(&text_unix_layer.layer, GRect(25, 100, 144-25, 168-100));
+	layer_set_frame(&text_unix_layer.layer, GRect(25, 120, 144-25, 168-120));
 	text_layer_set_font(&text_unix_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_UBUNTU_MONO_12)));
 	layer_add_child(&window.layer, &text_unix_layer.layer);
+}
+
+int get_unix_time(PblTm *now) {
+	// taken from http://goo.gl/pnPwQ
+	unsigned int unix_time;
+	unix_time = ((0-TIME_ZONE_OFFSET)*3600) // time zone offset, in hours
+		+ now->tm_sec // start with seconds
+		+ now->tm_min * 60 // add minutes
+		+ now->tm_hour * 3600 // add hours
+		+ now->tm_yday * 86400 // add days
+		+ (now->tm_year - 70) * 31536000 // add years since 1970
+		+ ((now->tm_year - 69) / 4) * 86400 // add a day after leap years, starting in 1973
+		+ ((now->tm_year - 1) / 100) * 86400 // remove a leap year every 100 years, starting in 2001
+		+ ((now->tm_year + 299) / 400) * 86400; // add a leap year back every 400 years, starting in 2001
+	return unix_time;
 }
 
 void handle_minute_tick(AppContextRef ctx, PebbleTickEvent *t) {
@@ -86,7 +103,7 @@ void handle_minute_tick(AppContextRef ctx, PebbleTickEvent *t) {
 	text_layer_set_text(&text_time_layer, time_text);
 
 	// unix
-	string_format_time(unix_text, sizeof(unix_text), "%s", t->tick_time);
+	string_format_time(unix_text, sizeof(unix_text), "%d", get_unix_time(t->tick_time));
 	text_layer_set_text(&text_unix_layer, unix_text);
 }
 
