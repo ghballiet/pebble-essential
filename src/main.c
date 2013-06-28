@@ -79,6 +79,36 @@ int get_unix_time(PblTm *now) {
 	return unix_time;
 }
 
+char *itoa(int num) {
+	// found here: http://goo.gl/DaC1N
+	static char buff[20] = {};
+	int i = 0, temp_num = num, length = 0;
+	char *string = buff;
+
+	if(num >= 0) {
+		// count how many characters in the number
+		while(temp_num) {
+			temp_num /= 10;
+			length++;
+		}
+
+		// assign the number to the buffer starting at the end of the
+		// number and going to the begining since we are doing the
+		// integer to character conversion on the last number in the
+		// sequence
+		for(i = 0; i < length; i++) {
+			buff[(length-1)-i] = '0' + (num % 10);
+			num /= 10;
+		}
+		buff[i] = '\0'; // can't forget the null byte to properly end our string
+	}
+	else
+		return "Unsupported Number";
+
+	return string;
+}
+
+
 void handle_minute_tick(AppContextRef ctx, PebbleTickEvent *t) {
 	(void)ctx;
 
@@ -104,7 +134,7 @@ void handle_minute_tick(AppContextRef ctx, PebbleTickEvent *t) {
 
 	// unix
 	// string_format_time(unix_text, sizeof(unix_text), "%d", get_unix_time(t->tick_time));
-	sprintf(unix_text, "%d", get_unix_time(t->tick_time));
+	unix_text = itoa(get_unix_time(t->tick_time));
 	text_layer_set_text(&text_unix_layer, unix_text);
 }
 
