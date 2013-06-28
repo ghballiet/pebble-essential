@@ -40,7 +40,7 @@ void handle_init(AppContextRef ctx) {
 	text_layer_set_text_color(&text_time_layer, GColorWhite);
 	text_layer_set_background_color(&text_time_layer, GColorClear);
 	layer_set_frame(&text_time_layer.layer, GRect(7, 30, 144-7, 168-30));
-	text_layer_set_font(&text_time_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_UBUNTU_MONO_BOLD_50)));
+	text_layer_set_font(&text_time_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_UBUNTU_MONO_BOLD_53)));
 	layer_add_child(&window.layer, &text_time_layer.layer);
 
 	text_layer_init(&text_date_layer, window.layer.frame);
@@ -55,7 +55,7 @@ void handle_minute_tick(AppContextRef ctx, PebbleTickEvent *t) {
 	(void)ctx;
 
 	// need to be static because they're used by the system later.
-	static char time_text[] = "00:00";
+	static char time_text[] = "00|00";
 	static char date_text[] = "XXX 00/00";
 
 	char *time_format;
@@ -64,7 +64,7 @@ void handle_minute_tick(AppContextRef ctx, PebbleTickEvent *t) {
 	text_layer_set_text(&text_date_layer, upcase(date_text));
 
 	if(clock_is_24h_style())
-		time_format = "%H:%M";
+		time_format = "%H|%M";
 	else
 		time_format = "%I:%M";
 
