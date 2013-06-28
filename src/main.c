@@ -15,6 +15,18 @@ Window window;
 TextLayer text_time_layer;
 TextLayer text_date_layer;
 
+// make it uppercase
+// found here: http://goo.gl/bbgVd
+char *upcase(char *str) {
+	for (int i = 0; str[i] != 0; i++) {
+		if (str[i] >= 'a' && str[i] <= 'z') {
+			str[i] -= 0x20;
+		}
+	}
+
+	return str;
+}
+
 void handle_init(AppContextRef ctx) {
 	(void)ctx;
 
@@ -27,7 +39,7 @@ void handle_init(AppContextRef ctx) {
 	text_layer_init(&text_date_layer, window.layer.frame);
 	text_layer_set_text_color(&text_date_layer, GColorWhite);
 	text_layer_set_background_color(&text_date_layer, GColorClear);
-	layer_set_frame(&text_date_layer.layer, GRect(8, 70, 144-7, 168-70));
+	layer_set_frame(&text_date_layer.layer, GRect(8, 92, 144-8, 168-92));
 	text_layer_set_font(&text_date_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_PRAGMATA_24)));
 	layer_add_child(&window.layer, &text_date_layer.layer);
 
@@ -49,7 +61,7 @@ void handle_minute_tick(AppContextRef ctx, PebbleTickEvent *t) {
 	char *time_format;
 
 	string_format_time(date_text, sizeof(date_text), "%a %m/%d", t->tick_time);
-	text_layer_set_text(&text_date_layer, date_text);
+	text_layer_set_text(&text_date_layer, upcase(date_text));
 
 	if(clock_is_24h_style())
 		time_format = "%H:%M";
