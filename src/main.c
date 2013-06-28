@@ -134,8 +134,8 @@ void handle_minute_tick(AppContextRef ctx, PebbleTickEvent *t) {
 
 	// unix
 	// string_format_time(unix_text, sizeof(unix_text), "%d", get_unix_time(t->tick_time));
-	unix_text = itoa(get_unix_time(t->tick_time));
-	text_layer_set_text(&text_unix_layer, unix_text);
+	// unix_text = itoa(get_unix_time(t->tick_time));
+	text_layer_set_text(&text_unix_layer, itoa(get_unix_time(t->tick_time)));
 }
 
 void pbl_main(void *params) {
