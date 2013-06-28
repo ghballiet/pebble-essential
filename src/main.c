@@ -35,7 +35,7 @@ void handle_minute_tick(AppContextRef ctx, PebbleTickEvent *t) {
 	(void)ctx;
 
 	// need to be static because they're used by the system later.
-	static char time_text[] = '00:00';
+	static char time_text[] = "00:00";
 
 	char *time_format;
 
