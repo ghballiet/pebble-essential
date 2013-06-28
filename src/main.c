@@ -39,8 +39,8 @@ void handle_init(AppContextRef ctx) {
 	text_layer_init(&text_time_layer, window.layer.frame);
 	text_layer_set_text_color(&text_time_layer, GColorWhite);
 	text_layer_set_background_color(&text_time_layer, GColorClear);
-	layer_set_frame(&text_time_layer.layer, GRect(7, 30, 144-7, 168-30));
-	text_layer_set_font(&text_time_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_UBUNTU_MONO_BOLD_53)));
+	layer_set_frame(&text_time_layer.layer, GRect(2, 20, 144-2, 168-20));
+	text_layer_set_font(&text_time_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_UBUNTU_MONO_BOLD_54)));
 	layer_add_child(&window.layer, &text_time_layer.layer);
 
 	text_layer_init(&text_date_layer, window.layer.frame);

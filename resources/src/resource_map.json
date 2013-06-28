@@ -1,7 +1,7 @@
 {
 	"media": [
 		{
-			"defName": "FONT_UBUNTU_MONO_BOLD_53",
+			"defName": "FONT_UBUNTU_MONO_BOLD_54",
 			"type": "font",
 			"characterRegex": "[:0-9|]",
 			"file": "fonts/UbuntuMono-B.ttf"
