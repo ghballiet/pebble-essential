@@ -40,14 +40,14 @@ void handle_init(AppContextRef ctx) {
 	text_layer_set_text_color(&text_time_layer, GColorWhite);
 	text_layer_set_background_color(&text_time_layer, GColorClear);
 	layer_set_frame(&text_time_layer.layer, GRect(7, 30, 144-7, 168-30));
-	text_layer_set_font(&text_time_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_PRAGMATA_BOLD_50)));
+	text_layer_set_font(&text_time_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_UBUNTU_MONO_BOLD_50)));
 	layer_add_child(&window.layer, &text_time_layer.layer);
 
 	text_layer_init(&text_date_layer, window.layer.frame);
 	text_layer_set_text_color(&text_date_layer, GColorWhite);
 	text_layer_set_background_color(&text_date_layer, GColorClear);
 	layer_set_frame(&text_date_layer.layer, GRect(17, 85, 144-17, 168-85));
-	text_layer_set_font(&text_date_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_PRAGMATA_24)));
+	text_layer_set_font(&text_date_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_UBUNTU_MONO_24)));
 	layer_add_child(&window.layer, &text_date_layer.layer);
 }
 
@@ -72,7 +72,6 @@ void handle_minute_tick(AppContextRef ctx, PebbleTickEvent *t) {
 
 	text_layer_set_text(&text_time_layer, time_text);
 }
-
 
 void pbl_main(void *params) {
 	PebbleAppHandlers handlers = {

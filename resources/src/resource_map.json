@@ -1,15 +1,15 @@
 {
 	"media": [
 		{
-			"defName": "FONT_PRAGMATA_BOLD_50",
+			"defName": "FONT_UBUNTU_MONO_BOLD_50",
 			"type": "font",
 			"characterRegex": "[:0-9 ]",
-			"file": "fonts/EPP-Bold.ttf"
+			"file": "fonts/UbuntuMono-B.ttf"
 		},
 		{
-			"defName": "FONT_PRAGMATA_24",
+			"defName": "FONT_UBUNTU_MONO_24",
 			"type": "font",
-			"file": "fonts/EPP.ttf"
+			"file": "fonts/UbuntuMono-R.ttf"
 		}
 	],
 	"friendlyVersion": "VERSION",
