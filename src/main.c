@@ -14,6 +14,7 @@ Window window;
 
 TextLayer text_time_layer;
 TextLayer text_date_layer;
+TextLayer text_unix_layer;
 
 // make it uppercase
 // found here: http://goo.gl/bbgVd
@@ -36,19 +37,29 @@ void handle_init(AppContextRef ctx) {
 
 	resource_init_current_app(&APP_RESOURCES);
 
+	// time
 	text_layer_init(&text_time_layer, window.layer.frame);
 	text_layer_set_text_color(&text_time_layer, GColorWhite);
 	text_layer_set_background_color(&text_time_layer, GColorClear);
-	layer_set_frame(&text_time_layer.layer, GRect(2, 20, 144-2, 168-20));
+	layer_set_frame(&text_time_layer.layer, GRect(4, 10, 144-4, 168-10));
 	text_layer_set_font(&text_time_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_UBUNTU_MONO_BOLD_54)));
 	layer_add_child(&window.layer, &text_time_layer.layer);
 
+	// date
 	text_layer_init(&text_date_layer, window.layer.frame);
 	text_layer_set_text_color(&text_date_layer, GColorWhite);
 	text_layer_set_background_color(&text_date_layer, GColorClear);
 	layer_set_frame(&text_date_layer.layer, GRect(17, 85, 144-17, 168-85));
 	text_layer_set_font(&text_date_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_UBUNTU_MONO_24)));
 	layer_add_child(&window.layer, &text_date_layer.layer);
+
+	// unix
+	text_layer_init(&text_unix_layer, window.layer.frame);
+	text_layer_set_text_color(&text_unix_layer, GColorWhite);
+	text_layer_set_background_color(&text_unix_layer, GColorClear);
+	text_layer_set_Frame(&text_unix_layer.layer, GRect(25, 100, 144-25, 168-100));
+	text_layer_set_font(&text_unix_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_UBUNTU_MONO_12)));
+	layer_add_child(&window.layer, &text_unix_layer.layer);
 }
 
 void handle_minute_tick(AppContextRef ctx, PebbleTickEvent *t) {
@@ -57,9 +68,11 @@ void handle_minute_tick(AppContextRef ctx, PebbleTickEvent *t) {
 	// need to be static because they're used by the system later.
 	static char time_text[] = "00|00";
 	static char date_text[] = "XXX 00/00";
+	static char unix_text[] = "00000000000";
 
 	char *time_format;
 
+	// date
 	string_format_time(date_text, sizeof(date_text), "%a %m/%d", t->tick_time);
 	text_layer_set_text(&text_date_layer, upcase(date_text));
 
@@ -68,9 +81,13 @@ void handle_minute_tick(AppContextRef ctx, PebbleTickEvent *t) {
 	else
 		time_format = "%I:%M";
 
+	// time
 	string_format_time(time_text, sizeof(time_text), time_format, t->tick_time);
-
 	text_layer_set_text(&text_time_layer, time_text);
+
+	// unix
+	string_format_time(unix_text, sizeof(unix_text), "%s", t->tick_time);
+	text_layer_set_text(&text_unix_layer, unix_text);
 }
 
 void pbl_main(void *params) {

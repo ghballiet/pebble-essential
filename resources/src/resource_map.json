@@ -10,6 +10,12 @@
 			"defName": "FONT_UBUNTU_MONO_24",
 			"type": "font",
 			"file": "fonts/UbuntuMono-R.ttf"
+		},
+		{
+			"defName": "FONT_UBUNTU_MONO_12",
+			"type": "font",
+			"characterRegex": "[0-9]",
+			"file": "fonts/UbuntuMono-R.ttf"
 		}
 	],
 	"friendlyVersion": "VERSION",
