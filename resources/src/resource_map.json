@@ -3,7 +3,7 @@
 		{
 			"defName": "FONT_UBUNTU_MONO_BOLD_53",
 			"type": "font",
-			"characterRegex": "[:0-9\|]",
+			"characterRegex": "[:0-9|]",
 			"file": "fonts/UbuntuMono-B.ttf"
 		},
 		{
