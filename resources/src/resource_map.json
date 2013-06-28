@@ -3,7 +3,13 @@
 		{
 			"defName": "FONT_PRAGMATA_BOLD_48",
 			"type": "font",
+			"characterRegex": "[:0-9 ]",
 			"file": "fonts/EPP-Bold.ttf"
+		},
+		{
+			"defName": "FONT_PRAGMATA_24",
+			"type": "font",
+			"file": "fonts/EPP.ttf"
 		}
 	],
 	"friendlyVersion": "VERSION",

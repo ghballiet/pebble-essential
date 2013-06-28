@@ -13,6 +13,7 @@ PBL_APP_INFO(MY_UUID,
 Window window;
 
 TextLayer text_time_layer;
+TextLayer text_date_layer;
 
 void handle_init(AppContextRef ctx) {
 	(void)ctx;
@@ -23,10 +24,17 @@ void handle_init(AppContextRef ctx) {
 
 	resource_init_current_app(&APP_RESOURCES);
 
+	text_layer_init(&text_date_layer, window.layer.frame);
+	text_layer_set_text_color(&text_date_layer, GColorWhite);
+	text_layer_set_background_color(&text_date_layer, GColorClear);
+	layer_set_frame(&text_date_layer.layer, GRect(8, 70, 144-7, 168-70));
+	text_layer_set_font(&text_date_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_PRAGMATA_24)));
+	layer_add_child(&window.layer, &text_date_layer.layer);
+
 	text_layer_init(&text_time_layer, window.layer.frame);
 	text_layer_set_text_color(&text_time_layer, GColorWhite);
 	text_layer_set_background_color(&text_time_layer, GColorClear);
-	layer_set_frame(&text_time_layer.layer, GRect(4, 57, 144-4, 168-57));
+	layer_set_frame(&text_time_layer.layer, GRect(7, 57, 144-7, 168-57));
 	text_layer_set_font(&text_time_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_PRAGMATA_BOLD_48)));
 	layer_add_child(&window.layer, &text_time_layer.layer);
 }
@@ -35,14 +43,17 @@ void handle_minute_tick(AppContextRef ctx, PebbleTickEvent *t) {
 	(void)ctx;
 
 	// need to be static because they're used by the system later.
-	static char time_text[] = "00|00";
+	static char time_text[] = "00:00";
+	static char date_text[] = "XXX 00/00";
 
 	char *time_format;
 
+	string_format_time(date_text, sizeof(date_text), "%a %m/%d", t->tick_time);
+
 	if(clock_is_24h_style())
-		time_format = "%H|%M";
+		time_format = "%H:%M";
 	else
-		time_format = "%I%M";
+		time_format = "%I:%M";
 
 	string_format_time(time_text, sizeof(time_text), time_format, t->tick_time);
 
