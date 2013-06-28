@@ -35,14 +35,14 @@ void handle_minute_tick(AppContextRef ctx, PebbleTickEvent *t) {
 	(void)ctx;
 
 	// need to be static because they're used by the system later.
-	static char time_text[] = "00:00";
+	static char time_text[] = "0000";
 
 	char *time_format;
 
 	if(clock_is_24h_style())
-		time_format = "%R";
+		time_format = "%H%M";
 	else
-		time_format = "%I:%M";
+		time_format = "%I%M";
 
 	string_format_time(time_text, sizeof(time_text), time_format, t->tick_time);
 
