@@ -1,9 +1,9 @@
 {
 	"media": [
 		{
-			"defName": "FONT_PRAGMATA_BOLD_50",
+			"defName": "FONT_PRAGMATA_BOLD_55",
 			"type": "font",
-			"file": "fonts/Essential PragmataPro-B_0.81.ttf"
+			"file": "fonts/EPP-Bold.ttf"
 		}
 	],
 	"friendlyVersion": "VERSION",
