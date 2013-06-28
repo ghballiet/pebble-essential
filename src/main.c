@@ -49,6 +49,7 @@ void handle_minute_tick(AppContextRef ctx, PebbleTickEvent *t) {
 	char *time_format;
 
 	string_format_time(date_text, sizeof(date_text), "%a %m/%d", t->tick_time);
+	text_layer_set_text(&date_text_layer, date_text);
 
 	if(clock_is_24h_style())
 		time_format = "%H:%M";
