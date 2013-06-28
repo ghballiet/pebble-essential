@@ -74,7 +74,7 @@ int get_unix_time(PblTm *now) {
 		+ now->tm_yday * 86400 // add days
 		+ (now->tm_year - 70) * 31536000 // add years since 1970
 		+ ((now->tm_year - 69) / 4) * 86400 // add a day after leap years, starting in 1973
-		+ ((now->tm_year - 1) / 100) * 86400 // remove a leap year every 100 years, starting in 2001
+		- ((now->tm_year - 1) / 100) * 86400 // remove a leap year every 100 years, starting in 2001
 		+ ((now->tm_year + 299) / 400) * 86400; // add a leap year back every 400 years, starting in 2001
 	return unix_time;
 }
@@ -133,8 +133,6 @@ void handle_minute_tick(AppContextRef ctx, PebbleTickEvent *t) {
 	text_layer_set_text(&text_time_layer, time_text);
 
 	// unix
-	// string_format_time(unix_text, sizeof(unix_text), "%d", get_unix_time(t->tick_time));
-	// unix_text = itoa(get_unix_time(t->tick_time));
 	text_layer_set_text(&text_unix_layer, itoa(get_unix_time(t->tick_time)));
 }
 
