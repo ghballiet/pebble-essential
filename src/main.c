@@ -57,7 +57,7 @@ void handle_init(AppContextRef ctx) {
 	text_layer_init(&text_unix_layer, window.layer.frame);
 	text_layer_set_text_color(&text_unix_layer, GColorWhite);
 	text_layer_set_background_color(&text_unix_layer, GColorClear);
-	text_layer_set_Frame(&text_unix_layer.layer, GRect(25, 100, 144-25, 168-100));
+	text_layer_set_frame(&text_unix_layer.layer, GRect(25, 100, 144-25, 168-100));
 	text_layer_set_font(&text_unix_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_UBUNTU_MONO_12)));
 	layer_add_child(&window.layer, &text_unix_layer.layer);
 }
