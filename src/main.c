@@ -39,14 +39,14 @@ void handle_init(AppContextRef ctx) {
 	text_layer_init(&text_time_layer, window.layer.frame);
 	text_layer_set_text_color(&text_time_layer, GColorWhite);
 	text_layer_set_background_color(&text_time_layer, GColorClear);
-	layer_set_frame(&text_time_layer.layer, GRect(9, 30, 144-9, 168-30));
+	layer_set_frame(&text_time_layer.layer, GRect(7, 30, 144-7, 168-30));
 	text_layer_set_font(&text_time_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_PRAGMATA_BOLD_50)));
 	layer_add_child(&window.layer, &text_time_layer.layer);
 
 	text_layer_init(&text_date_layer, window.layer.frame);
 	text_layer_set_text_color(&text_date_layer, GColorWhite);
 	text_layer_set_background_color(&text_date_layer, GColorClear);
-	layer_set_frame(&text_date_layer.layer, GRect(17, 90, 144-17, 168-90));
+	layer_set_frame(&text_date_layer.layer, GRect(17, 85, 144-17, 168-85));
 	text_layer_set_font(&text_date_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_PRAGMATA_24)));
 	layer_add_child(&window.layer, &text_date_layer.layer);
 }
