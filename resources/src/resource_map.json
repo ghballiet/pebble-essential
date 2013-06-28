@@ -12,7 +12,7 @@
 			"file": "fonts/UbuntuMono-R.ttf"
 		},
 		{
-			"defName": "FONT_UBUNTU_MONO_12",
+			"defName": "FONT_UBUNTU_MONO_14",
 			"type": "font",
 			"characterRegex": "[0-9]",
 			"file": "fonts/UbuntuMono-R.ttf"

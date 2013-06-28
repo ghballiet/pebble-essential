@@ -10,7 +10,7 @@ PBL_APP_INFO(MY_UUID,
 			 DEFAULT_MENU_ICON,
 			 APP_INFO_WATCH_FACE);
 
-#define TIME_ZONE_OFFSET -7
+#define TIME_ZONE_OFFSET 7
 
 Window window;
 
@@ -60,7 +60,7 @@ void handle_init(AppContextRef ctx) {
 	text_layer_set_text_color(&text_unix_layer, GColorWhite);
 	text_layer_set_background_color(&text_unix_layer, GColorClear);
 	layer_set_frame(&text_unix_layer.layer, GRect(25, 120, 144-25, 168-120));
-	text_layer_set_font(&text_unix_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_UBUNTU_MONO_12)));
+	text_layer_set_font(&text_unix_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_UBUNTU_MONO_14)));
 	layer_add_child(&window.layer, &text_unix_layer.layer);
 }
 
