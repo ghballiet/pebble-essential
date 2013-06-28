@@ -6,8 +6,9 @@
 			"file": "fonts/Essential PragmataPro_0811.ttf"
 		},
 		{
-			"defName": "FONT_PRAGMATA_BOLD_48",
+			"defName": "FONT_PRAGMATA_BOLD_64",
 			"type": "font",
+			"characterRegex": "[:0-9 ]",
 			"file": "fonts/Essential PragmataPro-B_0.81.ttf"
 		}
 	],
