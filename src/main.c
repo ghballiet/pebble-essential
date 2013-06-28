@@ -104,8 +104,8 @@ void handle_minute_tick(AppContextRef ctx, PebbleTickEvent *t) {
 
 	// unix
 	// string_format_time(unix_text, sizeof(unix_text), "%d", get_unix_time(t->tick_time));
-	sprintf(unix_time, "%d", get_unix_time(t->tick_time));
-	text_layer_set_text(&text_unix_layer, unix_time);
+	sprintf(unix_text, "%d", get_unix_time(t->tick_time));
+	text_layer_set_text(&text_unix_layer, unix_text);
 }
 
 void pbl_main(void *params) {
