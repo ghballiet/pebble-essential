@@ -39,7 +39,7 @@ void handle_init(AppContextRef ctx) {
 	text_layer_init(&text_date_layer, window.layer.frame);
 	text_layer_set_text_color(&text_date_layer, GColorWhite);
 	text_layer_set_background_color(&text_date_layer, GColorClear);
-	layer_set_frame(&text_date_layer.layer, GRect(8, 92, 144-8, 168-92));
+	layer_set_frame(&text_date_layer.layer, GRect(8, 130, 144-8, 168-130));
 	text_layer_set_font(&text_date_layer, fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_PRAGMATA_24)));
 	layer_add_child(&window.layer, &text_date_layer.layer);
 
